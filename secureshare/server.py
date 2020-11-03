@@ -47,9 +47,11 @@ def ok(data=None):
         result.update(data)
     return jsonify(result)
 
+
 @app.route('/', methods=['GET'])
 def index():
     return ';)'
+
 
 @app.route('/ping', methods=['GET'])
 def ping():
@@ -79,6 +81,9 @@ def upload():
                                     f'{file_key}/{file_name}')
     if EXTERNAL_URL:
         response.autocorrect_location_header = False
+    headers['Cache-Control'] = ('no-cache, no-store, must-revalidate,'
+                                ' post-check=0, pre-check=0')
+    headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = expires.isoformat() + 'Z'
     db.query('stor.add',
              id=file_id,
