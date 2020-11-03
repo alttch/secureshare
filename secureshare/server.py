@@ -105,7 +105,6 @@ def download(file_id, file_key, file_name):
     try:
         contents = engine.decrypt(f['data'].tobytes(), b64=False)
     except ValueError:
-        raise
         abort(403)
     if f['oneshot']:
         db.query('stor.expire', id=file_id)
