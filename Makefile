@@ -27,3 +27,11 @@ pub:
 
 pub-pypi:
 	twine upload dist/*
+
+docker-build:
+	docker build -t altertech/secureshare:${VERSION}-${BUILD_NUMBER} .
+	docker tag altertech/secureshare:${VERSION}-${BUILD_NUMBER} altertech/secureshare:latest
+
+docker-pub:
+	docker push altertech/secureshare:${VERSION}-${BUILD_NUMBER}
+	docker push altertech/secureshare:latest
