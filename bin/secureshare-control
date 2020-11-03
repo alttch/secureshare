@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+__version__ = '0.0.1'
+
+product_build = 'alpha'
+
+from pathlib import Path
+from pyaltt2.app import manage_gunicorn_app
+
+dir_me = Path(__file__).absolute().parents[1]
+
+manage_gunicorn_app('secureshare',
+                    dir_me,
+                    version=__version__,
+                    build=product_build,
+                    default_port=8008,
+                    api_uri='/')

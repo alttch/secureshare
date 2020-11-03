@@ -1,0 +1,5 @@
+etc/secureshare.yml
+*.pyc
+__pycache__
+secureshare.egg-info
+dist

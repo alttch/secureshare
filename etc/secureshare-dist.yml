@@ -1,0 +1,12 @@
+secureshare:
+  db: postgresql://user:pass@host/secureshare
+  # url: http://externaldomain
+  db-clean-interval: 60
+  upload-key: mykey
+  default-expires: 604800
+  gunicorn:
+    listen: 0.0.0.0:8008
+    start-failed-after: 5
+    force-stop-after: 10
+    launch-debug: true
+    extra-options: -w 2 --log-level INFO
