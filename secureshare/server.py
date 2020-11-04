@@ -115,12 +115,20 @@ def upload():
 def download(file_id, file_key, file_name):
     delete = request.args.get('c') == 'rm'
     try:
-        f = db.qlookup('stor.get', id=file_id, fname=file_name)
+        f = db.qlookup('stor.get',
+                       id=file_id,
+                       fname=file_name,
+                       d=datetime.now())
     except LookupError:
         abort(404)
     engine = cr.Rioja(file_key, bits=256)
+    data = f['data']
     try:
-        contents = engine.decrypt(f['data'].tobytes(), b64=False)
+        data = data.tobytes()
+    except:
+        pass
+    try:
+        contents = engine.decrypt(data, b64=False)
     except ValueError:
         abort(403)
     if delete or f['oneshot']:
@@ -148,14 +156,23 @@ def clean_db():
 
 dbconn = db.connect()
 
+if 'mysql' in db.db.name:
+    from sqlalchemy.dialects.mysql import DATETIME, LONGBLOB
+    DateTime = partial(DATETIME, fsp=6)
+    LargeBinary = LONGBLOB
+
 meta = MetaData()
-stor = Table('stor', meta, Column('id', CHAR(16), primary_key=True),
+stor = Table('stor',
+             meta,
+             Column('id', CHAR(16), primary_key=True),
              Column('fname', VARCHAR(255), nullable=False),
              Column('sha256sum', CHAR(64), nullable=False),
              Column('mimetype', VARCHAR(255), nullable=False),
              Column('expires', DateTime(timezone=True), nullable=False),
              Column('oneshot', BOOLEAN, nullable=False, server_default='0'),
-             Column('data', LargeBinary, nullable=False))
+             Column('data', LargeBinary, nullable=False),
+             mysql_engine='InnoDB',
+             mysql_charset='utf8mb4')
 
 meta.create_all(dbconn)
 
