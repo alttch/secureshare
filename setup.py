@@ -18,11 +18,11 @@ setuptools.setup(name='secureshare',
                  license='Apache License 2.0',
                  install_requires=[
                      'requests', 'pyyaml', 'sqlalchemy', 'pyaltt2>=0.0.97',
-                     'flask', 'psycopg2'
+                     'flask', 'psycopg2', 'pytz'
                  ],
                  classifiers=(
                      'Programming Language :: Python :: 3',
                      'License :: OSI Approved :: Apache Software License',
                      'Topic :: Communications',
                  ),
-                 scripts=['bin/secureshare-control', 'bin/sshare'])
+                 scripts=['bin/secureshare-control'])
