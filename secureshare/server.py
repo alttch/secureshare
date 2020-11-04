@@ -92,11 +92,19 @@ def upload():
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = expires.isoformat() + 'Z'
     mimetype = mimetypes.guess_type(filename)[0]
+    if mimetype is None:
+        mimetype = 'application/octet-stream'
+    if mimetype == 'application/octet-stream':
+        try:
+            data.decode()
+            mimetype = 'text/plain'
+        except:
+            pass
     db.query('stor.add',
              id=file_id,
              fname=filename,
              sha256sum=sha256sum,
-             mimetype=mimetype if mimetype else 'application/octet-stream',
+             mimetype=mimetype,
              expires=expires,
              oneshot=oneshot,
              data=contents)
