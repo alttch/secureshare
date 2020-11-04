@@ -105,6 +105,7 @@ def upload():
 
 @app.route('/d/<file_id>/<file_key>/<file_name>', methods=['GET'])
 def download(file_id, file_key, file_name):
+    delete = request.args.get('c') == 'rm'
     try:
         f = db.qlookup('stor.get', id=file_id, fname=file_name)
     except LookupError:
@@ -114,8 +115,8 @@ def download(file_id, file_key, file_name):
         contents = engine.decrypt(f['data'].tobytes(), b64=False)
     except ValueError:
         abort(403)
-    if f['oneshot']:
-        db.query('stor.expire', id=file_id)
+    if delete or f['oneshot']:
+        db.query('stor.delete', id=file_id)
     response = make_response(contents)
     response.headers['Content-Type'] = f['mimetype']
     response.headers['x-hash-sha256'] = f['sha256sum']
