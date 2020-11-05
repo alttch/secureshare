@@ -26,6 +26,10 @@ https://github.com/alttch/sshare
 pip3 install sshare
 ```
 
+## Launching server
+
+Use *secureshare-control* script to manage the server.
+
 ## Usage without a client on 3rd party servers:
 
 ```
