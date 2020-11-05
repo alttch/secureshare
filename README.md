@@ -2,11 +2,21 @@
 
 Simple secure file sharing personal server, Docker/Kubernetes compatible.
 
-## Installing:
+## Installing
 
 ```
 pip3 install secureshare
 ```
+
+SQL database is required. Supported and tested:
+
+* SQLite
+* MySQL
+* PostgreSQL
+
+Docker image: https://hub.docker.com/r/altertech/secureshare
+
+(config should be mounted as /config/secureshare.yml)
 
 ## Client
 
