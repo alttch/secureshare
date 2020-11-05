@@ -4,6 +4,7 @@ secureshare:
   db-clean-interval: 60
   upload-key: mykey
   default-expires: 604800
+  default-token-expires: 600
   gunicorn:
     listen: 0.0.0.0:8008
     start-failed-after: 5
