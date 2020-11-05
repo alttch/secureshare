@@ -104,9 +104,9 @@ Send files as multipart MIME forms POST requests to
 
 with arguments:
 
+* **file** file data (required)
 * **oneshot=1** generate one-shot (self-destructing) link
 * **expires** set link expiration time (in seconds from now)
-* **file** file data
 * **fname** override file name
 * **sha256sum** ask server to check SHA256 sum of the received file
 
