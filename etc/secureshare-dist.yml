@@ -6,6 +6,7 @@ secureshare:
   default-expires: 604800
   default-token-expires: 600
   gunicorn:
+    #path: gunicorn
     listen: 0.0.0.0:8008
     start-failed-after: 5
     force-stop-after: 10

@@ -6,6 +6,8 @@ Simple secure file sharing personal server, Docker/Kubernetes compatible.
 
 ```
 pip3 install secureshare
+# install gunicorn for Python3, if not present in system
+pip3 install gunicorn
 ```
 
 SQL database is required. Supported and tested:
