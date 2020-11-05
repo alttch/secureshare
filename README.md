@@ -1,4 +1,4 @@
- secureshare
+ SecureShare
 
 Simple secure file sharing personal server, Docker/Kubernetes compatible.
 
@@ -43,6 +43,22 @@ valid key)
 Files can be also deleted by specifying *?c=delete* URL ending (requires URL
 knowledge only)
 
+## Upload API
+
+Send files as multipart MIME forms POST requests to 
+
+```
+    http://YOURDOMAIN/u
+```
+
+with arguments:
+
+* **oneshot=1** generate one-shot (self-destructing) link
+* **expires** set link expiration time (in seconds from now)
+* **file** file data
+* **fname** override file name
+* **sha256sum** ask server to check SHA256 sum of the received file
+
 ## Security
 
 A shared file URL looks like:
@@ -56,3 +72,8 @@ encrypted (AES256), so the server can't decrypt a requested file without the
 complete generated URL.
 
 If the URL is lost, file decryption becomes impossible.
+
+## Size limits
+
+SecureShare is created to securely share small files < 100MB. Sharing larger
+files isn't recommended, as it may produce DB / encryption overheads.
