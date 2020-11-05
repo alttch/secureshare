@@ -57,12 +57,12 @@ Use *secureshare-control* script to manage the server.
 ## Usage without a client on 3rd party servers:
 
 ```
-# generate one-time token (in a trusted system)
+# generate one-time token (on a trusted system)
 sshare c:token
 ```
 
 ```
-# upload desired file with generated token (in an untrusted system)
+# upload desired file with generated token (on an untrusted system)
 curl -v -F 'oneshot=1' -F 'file=@path/to/file' -Hx-auth-key:GENERATED_TOKEN https://YOUR_DOMAIN/u
 ```
 
