@@ -1,4 +1,4 @@
-__version__ = '0.0.13'
+__version__ = '0.0.14'
 
 import setuptools
 
@@ -18,7 +18,7 @@ setuptools.setup(name='secureshare',
                  license='Apache License 2.0',
                  install_requires=[
                      'requests', 'pyyaml', 'sqlalchemy', 'pyaltt2>=0.0.97',
-                     'flask', 'psycopg2', 'pytz'
+                     'flask', 'psycopg2', 'pytz', 'pycrypto'
                  ],
                  classifiers=(
                      'Programming Language :: Python :: 3',
