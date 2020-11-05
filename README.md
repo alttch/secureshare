@@ -34,3 +34,9 @@ sshare c:token
 # upload desired file
 curl -v -F 'oneshot=1' -F 'file=@path/to/file' -Hx-auth-key:GENERATED_TOKEN https://YOUR_DOMAIN/u
 ```
+
+## Deleting files / tokens
+
+Uploaded files and tokens can be deleted with DELETE HTTP method.
+
+Files can be also deleted by specifying *?c=delete* URL ending.
