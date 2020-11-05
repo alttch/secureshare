@@ -37,6 +37,22 @@ curl -v -F 'oneshot=1' -F 'file=@path/to/file' -Hx-auth-key:GENERATED_TOKEN http
 
 ## Deleting files / tokens
 
-Uploaded files and tokens can be deleted with DELETE HTTP method.
+Uploaded files and tokens can be deleted with DELETE HTTP method (requires
+valid key)
 
-Files can be also deleted by specifying *?c=delete* URL ending.
+Files can be also deleted by specifying *?c=delete* URL ending (requires URL
+knowledge only)
+
+## Security
+
+A shared file URL looks like:
+
+```
+    http://YOURDOMAIN/d/<ID>/<KEY>/<FILENAME>
+```
+
+ID is used to locate file in the storage database. The database stores files
+encrypted (AES256), so the server can't decrypt a requested file without the
+complete generated URL.
+
+If the URL is lost, file decryption becomes impossible.
