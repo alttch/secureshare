@@ -56,7 +56,7 @@ Use *secureshare-control* script to manage the server.
 
 ## Using client
 
-Secure sharing files from the command line has never been more simple:
+Secure sharing files from the command line has never been easier:
 
 ```
 # share a file
