@@ -180,7 +180,7 @@ def delete_upload(file_id, file_key, file_name):
 
 @app.route('/d/<file_id>/<file_key>/<file_name>', methods=['GET'])
 def download(file_id, file_key, file_name):
-    delete = request.args.get('c') == 'rm'
+    delete = request.args.get('c') == 'delete'
     try:
         f = db.qlookup('stor.get',
                        id=file_id,
