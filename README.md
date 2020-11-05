@@ -4,9 +4,9 @@ Simple secure file sharing personal server, Docker/Kubernetes compatible.
 
 ## What is SecureShare
 
-SecureShare allows quickly and securely sharing of small files. The files are
-uploaded via HTTP POST to your host or SecureShare Kubernetes pod, encrypted
-and securely stored inside the database.
+SecureShare allows quickly and securely share small files, documents and
+command pipe outputs. The files are uploaded via HTTP POST to your host or
+SecureShare Kubernetes pod, encrypted and securely stored inside the database.
 
 After the server returns you the shared HTTP URL. It's not possible to retrieve
 uploaded file contents without the URL, as the file content is AES256-encrypted
