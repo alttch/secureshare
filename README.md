@@ -54,6 +54,26 @@ pip3 install sshare
 
 Use *secureshare-control* script to manage the server.
 
+## Using client
+
+Secure sharing files from the command line has never been more simple:
+
+```
+# share a file
+sshare path/to/file
+```
+
+```
+# share a file with self-destructing one-shot link
+sshare path/to/file -s
+```
+
+```
+# share a command output
+cat /etc/passwd | sshare
+# don't share that ;)
+```
+
 ## Usage without a client on 3rd party servers:
 
 ```
