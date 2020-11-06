@@ -138,11 +138,16 @@ def upload():
     if received_sha256sum and received_sha256sum != sha256sum:
         return make_response('Checksum does not match', 422)
     file_id = cr.gen_random_str(16)
-    file_key = cr.gen_random_str(16)
     filename = os.path.basename(filename)
     oneshot = val_to_boolean(request.form.get('oneshot', False))
-    engine = cr.Rioja(file_key, bits=256)
-    contents = engine.encrypt(data, b64=False)
+    store_as_raw = val_to_boolean(request.form.get('raw', False))
+    if store_as_raw:
+        contents = data
+        file_key = '-'
+    else:
+        file_key = cr.gen_random_str(16)
+        engine = cr.Rioja(file_key, bits=256)
+        contents = engine.encrypt(data, b64=False)
     location = (f'{EXTERNAL_URL}/d/{file_id}/' f'{file_key}/{filename}')
     response = make_response(dict(url=location), 201)
     response.headers['Location'] = location
@@ -199,16 +204,19 @@ def download(file_id, file_key, file_name):
                        d=datetime.now())
     except LookupError:
         abort(404)
-    engine = cr.Rioja(file_key, bits=256)
     data = f['data']
     try:
         data = data.tobytes()
     except:
         pass
-    try:
-        contents = engine.decrypt(data, b64=False)
-    except ValueError:
-        abort(403)
+    if file_key == '-':
+        contents = data
+    else:
+        try:
+            engine = cr.Rioja(file_key, bits=256)
+            contents = engine.decrypt(data, b64=False)
+        except ValueError:
+            abort(403)
     if delete or f['oneshot']:
         db.query('stor.delete', id=file_id)
     if delete:

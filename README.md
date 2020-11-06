@@ -120,6 +120,8 @@ with arguments:
 * **expires** set link expiration time (in seconds from now)
 * **fname** override file name
 * **sha256sum** ask server to check SHA256 sum of the received file
+* **raw=1** store raw (don't encrypt) file in DB. Useful for already encrypted
+  data.
 
 ### Deleting files / tokens
 
