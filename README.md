@@ -89,7 +89,7 @@ share /etc/passwd -c
 
 The data is encrypted using OpenSSL AES-256-CBC with PBKDF2 derivation
 function. After uploading, the client generates a hint command, which can be
-used to download file as-is:
+used as-is to download file:
 
 ```
 =========================================================
