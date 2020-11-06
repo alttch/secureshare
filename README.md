@@ -141,6 +141,10 @@ generated URL.
 
 If the URL is lost, file decryption becomes impossible.
 
+## WebUI
+
+Maybe later.
+
 ## Size limits
 
 SecureShare is created to securely share small files < 100MB. Sharing larger
