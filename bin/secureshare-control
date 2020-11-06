@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-__version__ = '0.0.16'
+__version__ = '0.0.17'
 
 product_build = 'alpha'
 
