@@ -78,6 +78,30 @@ cat /etc/passwd | sshare
 # don't share that ;)
 ```
 
+## Sharing something really important
+
+Option "-c" tells the client to encrypt file on the local machine. The server
+stores such files as-is:
+
+```
+share /etc/passwd -c
+```
+
+The data is encrypted using OpenSSL AES-256-CBC with PBKDF2 derivation
+function. After uploading, the client generates a hint command, which can be
+used to download file as-is:
+
+```
+=========================================================
+Decrypt password: 9aIEE8cZAFbc
+
+curl -s https://domainx/d/329pmriChoQ8DhZkE/-/passwd |
+    openssl aes-256-cbc -d -a -pbkdf2 -out passwd
+=========================================================
+```
+
+Passwords are auto-generated, use "-w" option to specify the own one.
+
 ## Usage without a client on 3rd party servers:
 
 ```
