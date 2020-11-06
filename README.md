@@ -24,7 +24,7 @@ SecureShare is useful for:
 SecureShare isn't yet-another cloud service. You run your own secure dedicated
 instance, on any Linux system or inside K8S-cluster.
 
-<img src="https://github.com/alttch/secureshare/blob/main/demo.gif?raw=true" width="750" />
+<img src="https://github.com/alttch/secureshare/blob/main/media/demo.gif?raw=true" width="750" />
 
 ## Installing
 
