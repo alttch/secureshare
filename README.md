@@ -141,6 +141,20 @@ generated URL.
 
 If the URL is lost, file decryption becomes impossible.
 
+### Previews
+
+When sharing links with messengers, they may fetch content for preview, which's
+insecure and may destroy one-shot links. The following messenger user agents
+are banned automatically:
+
+* WhatsApp
+* Viber
+* Telegram
+* Facebook Messenger
+
+The list is located in secureshare/server.py BANNED_AGENTS variable (send me a
+pull request to extend).
+
 ## WebUI
 
 Maybe later.
