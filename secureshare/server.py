@@ -40,6 +40,7 @@ EXTERNAL_URL = config.get('url', '')
 
 # list of banned user agents to block link preview fetch (startswith, lowercase)
 BANNED_AGENTS = ['telegrambot', 'whatsapp', 'viber', 'facebookexternalhit']
+BANNED_AGENTS_CONTAINS = ['skypeuripreview']
 
 
 def ok(data=None):
@@ -186,6 +187,9 @@ def download(file_id, file_key, file_name):
     ua = request.headers.get('User-Agent', '').lower()
     for banned_ua in BANNED_AGENTS:
         if ua.startswith(banned_ua):
+            return ''
+    for banned_ua in BANNED_AGENTS_CONTAINS:
+        if banned_ua in ua:
             return ''
     delete = request.args.get('c') == 'delete'
     try:

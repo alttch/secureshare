@@ -153,6 +153,7 @@ are banned automatically:
 * Viber
 * Telegram
 * Facebook Messenger
+* Skype
 
 The list is located in secureshare/server.py BANNED_AGENTS variable (send me a
 pull request to extend).
