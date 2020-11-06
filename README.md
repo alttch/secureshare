@@ -88,15 +88,22 @@ sshare c:token
 curl -v -F 'oneshot=1' -F 'file=@path/to/file' -Hx-auth-key:GENERATED_TOKEN https://YOUR_DOMAIN/u
 ```
 
-## Deleting files / tokens
+## API
 
-Uploaded files and tokens can be deleted with DELETE HTTP method (requires
-valid key)
+### Authentication
 
-Files can be also deleted by specifying *?c=delete* URL ending (requires URL
-knowledge only)
+Set *X-Auth-Key* HTTP header to *upload-key* value from the server config.
+There's only one upload / management key (at this moment) but one-time tokens
+can be additionally generated.
 
-## Upload API
+### Generating new one-time token
+
+A HTTP POST request to /api/v1/token will return new one-time authentication
+token, arguments:
+
+* **expires** set token expiration time (in seconds from now), optional
+
+### Uploading
 
 Send files as multipart MIME forms POST requests to 
 
@@ -111,6 +118,14 @@ with arguments:
 * **expires** set link expiration time (in seconds from now)
 * **fname** override file name
 * **sha256sum** ask server to check SHA256 sum of the received file
+
+### Deleting files / tokens
+
+Uploaded files and tokens can be deleted with DELETE HTTP method (requires
+valid key)
+
+Files can be also deleted by specifying *?c=delete* URL ending (requires URL
+knowledge only)
 
 ## Security
 
