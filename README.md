@@ -84,7 +84,7 @@ Option "-c" tells the client to encrypt file on the local machine. The server
 stores such files as-is:
 
 ```
-share /etc/passwd -c
+sshare /etc/passwd -c
 ```
 
 The data is encrypted using OpenSSL AES-256-CBC with PBKDF2 derivation
