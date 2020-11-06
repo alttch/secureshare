@@ -38,6 +38,9 @@ db = Database(config['db'], rq_func=rq)
 
 EXTERNAL_URL = config.get('url', '')
 
+# list of banned user agents to block link preview fetch (startswith, lowercase)
+BANNED_AGENTS = ['telegrambot', 'whatsapp', 'viber', 'facebookexternalhit']
+
 
 def ok(data=None):
     result = {'ok': True}
@@ -180,6 +183,10 @@ def delete_upload(file_id, file_key, file_name):
 
 @app.route('/d/<file_id>/<file_key>/<file_name>', methods=['GET'])
 def download(file_id, file_key, file_name):
+    ua = request.headers.get('User-Agent', '').lower()
+    for banned_ua in BANNED_AGENTS:
+        if ua.startswith(banned_ua):
+            return ''
     delete = request.args.get('c') == 'delete'
     try:
         f = db.qlookup('stor.get',
