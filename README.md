@@ -1,6 +1,8 @@
- SecureShare
+# SecureShare
 
 Simple secure file sharing personal server, Docker/Kubernetes compatible.
+SecureShare can share any text information (pastebin-like) and small binary
+files as well.
 
 ## What is SecureShare
 
