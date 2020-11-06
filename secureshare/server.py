@@ -61,6 +61,7 @@ def index():
 
 @app.route('/ping', methods=['GET'])
 def ping():
+    db.connect()
     return make_response('', 204)
 
 
