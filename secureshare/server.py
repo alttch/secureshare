@@ -223,7 +223,10 @@ def download(file_id, file_key, file_name):
     if delete:
         return ok()
     response = make_response(contents)
-    response.headers['Content-Type'] = f['mimetype']
+    ct = f['mimetype']
+    if ct.startswith('text/'):
+        ct += '; charset=utf-8'
+    response.headers['Content-Type'] = ct
     response.headers['x-hash-sha256'] = f['sha256sum']
     if val_to_boolean(request.args.get('raw')):
         response.headers[
