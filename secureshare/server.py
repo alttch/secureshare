@@ -59,6 +59,12 @@ def index():
     return ';)'
 
 
+@app.route('/robots.txt', method=['GET'])
+def robots_txt():
+    return """User-agent: *
+Disallow: /"""
+
+
 @app.route('/ping', methods=['GET'])
 def ping():
     db.connect()
