@@ -59,10 +59,11 @@ def index():
     return ';)'
 
 
-@app.route('/robots.txt', method=['GET'])
+@app.route('/robots.txt', methods=['GET'])
 def robots_txt():
     return """User-agent: *
-Disallow: /"""
+Disallow: /
+"""
 
 
 @app.route('/ping', methods=['GET'])
